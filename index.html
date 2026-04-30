@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мега Крестики-Нолики</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2394a17b'/%3E%3Cpath d='M7 7l18 18M25 7L7 25' stroke='%231e2316' stroke-width='4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <section class="top-bar" aria-label="Панель игры">
+      <div>
+        <p class="eyebrow">RETRO BOARD GAME</p>
+        <h1>Мега<br>Крестики-Нолики</h1>
+      </div>
+
+      <div class="scoreboard" aria-label="Счёт">
+        <div class="score-card">
+          <span>X</span>
+          <strong id="score-x">0</strong>
+        </div>
+        <div class="score-card">
+          <span>O</span>
+          <strong id="score-o">0</strong>
+        </div>
+        <div class="score-card">
+          <span>Ничьи</span>
+          <strong id="score-draw">0</strong>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu-screen" class="screen active" aria-label="Главное меню">
+      <div class="panel menu-panel">
+        <div class="menu-copy">
+          <h2>Выбери режим</h2>
+          <p>Побеждай на малых полях, захватывай большие клетки и собери три больших квадрата в ряд.</p>
+        </div>
+
+        <div class="mode-grid">
+          <button class="retro-btn mode-btn" data-mode="pvp">
+            <span>2 игрока</span>
+            <small>X против O на одном устройстве</small>
+          </button>
+          <button class="retro-btn mode-btn" data-mode="ai">
+            <span>Против бота</span>
+            <small>Ты играешь за X, бот играет за O</small>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="game-screen" class="screen" aria-label="Игровой экран">
+      <div class="panel hud-panel">
+        <div>
+          <p class="label">Статус</p>
+          <div id="status" class="status">Ход: <span class="blink">X</span></div>
+        </div>
+        <div class="hud-actions">
+          <button id="rules-btn" class="icon-btn" type="button" aria-label="Правила">?</button>
+          <button id="undo-btn" class="retro-btn small" type="button">Назад</button>
+          <button id="new-round-btn" class="retro-btn small" type="button">Новый раунд</button>
+          <button id="menu-btn" class="retro-btn small" type="button">Меню</button>
+        </div>
+      </div>
+
+      <div class="layout">
+        <div class="panel board-panel">
+          <div id="board" class="ultimate-board" aria-label="Игровое поле"></div>
+        </div>
+
+        <aside class="panel side-panel" aria-label="Информация партии">
+          <div class="side-section">
+            <p class="label">Режим</p>
+            <strong id="mode-label">2 игрока</strong>
+          </div>
+          <div class="side-section">
+            <p class="label">Следующая доска</p>
+            <strong id="target-board">Любая</strong>
+          </div>
+          <div class="side-section">
+            <p class="label">Ходы</p>
+            <strong id="move-counter">0</strong>
+          </div>
+          <div class="side-section history-wrap">
+            <p class="label">История</p>
+            <ol id="history" class="history"></ol>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <dialog id="rules-dialog" class="rules-dialog">
+      <form method="dialog" class="panel dialog-panel">
+        <h2>Правила</h2>
+        <ul>
+          <li>Поле состоит из 9 малых досок 3x3.</li>
+          <li>Клетка, в которую ты сходил, указывает большую доску для следующего хода соперника.</li>
+          <li>Победа на малой доске захватывает соответствующий большой квадрат.</li>
+          <li>Если нужная большая доска уже завершена, следующий игрок может ходить в любую доступную доску.</li>
+          <li>Побеждает тот, кто соберёт три захваченных больших квадрата в ряд.</li>
+        </ul>
+        <button class="retro-btn" type="submit">Закрыть</button>
+      </form>
+    </dialog>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
